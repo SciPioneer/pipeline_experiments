@@ -17,8 +17,8 @@ model_params="--batch_size $bs --num_chunks=$chunks --world_size=$ws --num_worke
 sbatch <<EOT
 #!/bin/bash
 #SBATCH --job-name=pipeline-$model-bs-$bs-ws-$ws-chunks-$chunks
-#SBATCH --output=/tmp/logs.%x.%t.out
-#SBATCH --error=/tmp/logs.%x.%t.err
+#SBATCH --output=logs/logs.%x.%t.out
+#SBATCH --error=logs/logs.%x.%t.err
 #SBATCH --gres gpu:4
 #SBATCH --nodes $nodes
 #SBATCH --partition=q3
