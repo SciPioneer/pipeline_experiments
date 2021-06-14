@@ -1,3 +1,6 @@
-data/
+.data/
 __pycache__/
 *.out
+logs/
+fairscale
+torchtext_bert_vocab.pt
