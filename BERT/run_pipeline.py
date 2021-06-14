@@ -320,8 +320,10 @@ def run_main(args):
 def run_worker(rank, args):
     n_gpu  = args.world_size // args.num_workers
 
+    """
     if rank < 1:
         psutil.Process().cpu_affinity([0,1])
+    """
 
     n_cpu = psutil.cpu_count()
     aff = [(rank + 1 + i) % n_cpu for i in range(n_cpu // 3)]
