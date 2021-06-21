@@ -1,39 +1,1 @@
 + srun -u python3 -m BERT.run_pipeline --batch_size 30 --num_chunks=10 --world_size=8 --num_workers=2 --num_batch=20 --epochs=1 --nlayers=24 --emsize=2048 --nhid=8192 --nhead=16
-wikitext-2-v1.zip:   0%|          | 0.00/4.48M [00:00<?, ?B/s]wikitext-2-v1.zip: 100%|██████████| 4.48M/4.48M [00:00<00:00, 93.1MB/s]
-  0%|          | 0/36718 [00:00<?, ?lines/s]  7%|▋         | 2644/36718 [00:00<00:01, 26424.53lines/s] 16%|█▌        | 5878/36718 [00:00<00:01, 27951.81lines/s] 23%|██▎       | 8497/36718 [00:00<00:01, 27396.73lines/s] 31%|███       | 11259/36718 [00:00<00:00, 27461.99lines/s] 38%|███▊      | 14130/36718 [00:00<00:00, 27824.45lines/s] 46%|████▌     | 16949/36718 [00:00<00:00, 27925.21lines/s] 54%|█████▍    | 19964/36718 [00:00<00:00, 28551.86lines/s] 62%|██████▏   | 22822/36718 [00:00<00:00, 28559.53lines/s] 71%|███████   | 26011/36718 [00:00<00:00, 29478.25lines/s] 79%|███████▊  | 28864/36718 [00:01<00:00, 28978.26lines/s] 86%|████████▋ | 31698/36718 [00:01<00:00, 28594.99lines/s] 94%|█████████▍| 34514/36718 [00:01<00:00, 28353.20lines/s]100%|██████████| 36718/36718 [00:01<00:00, 28584.70lines/s]
-Traceback (most recent call last):
-  File "/fsx/users/wayi/conda/lib/python3.8/runpy.py", line 194, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "/fsx/users/wayi/conda/lib/python3.8/runpy.py", line 87, in _run_code
-    exec(code, run_globals)
-  File "/fsx/users/wayi/work/pipeline_experiments/BERT/run_pipeline.py", line 427, in <module>
-    run_worker(-1, args)
-  File "/fsx/users/wayi/work/pipeline_experiments/BERT/run_pipeline.py", line 361, in run_worker
-    run_main(args)
-  File "/fsx/users/wayi/work/pipeline_experiments/BERT/run_pipeline.py", line 303, in run_main
-    params = sum([torch.prod(torch.tensor(p.rpc_sync().size())).item() for p in model.parameter_rrefs()])
-  File "/fsx/users/wayi/work/pipeline_experiments/fairscale/experimental/nn/distributed_pipeline/pipeline.py", line 151, in parameter_rrefs
-    remote_params.extend(p.handler.rpc_sync().local_parameter_rrefs())
-  File "/fsx/users/wayi/work/pytorch/torch/distributed/rpc/rref_proxy.py", line 18, in _invoke_rpc
-    rref_type = rref._get_type(timeout=timeout)
-  File "/fsx/users/wayi/work/pytorch/torch/distributed/rpc/api.py", line 409, in _rref_typeof_on_user
-    return fut.wait()
-  File "/fsx/users/wayi/work/pytorch/torch/distributed/rpc/internal.py", line 218, in _handle_exception
-    raise result.exception_type(result.msg.encode("utf-8").decode("unicode_escape"))
-RuntimeError: On WorkerInfo(id=0, name=w0):
-RuntimeError("Cannot extract tensors from value: TypeError: cannot pickle '_thread.lock' object
-
-At:
-  /fsx/users/wayi/work/pytorch/torch/_jit_internal.py(1170): _extract_tensors
-")
-Traceback (most recent call last):
-  File "/fsx/users/wayi/work/pytorch/torch/distributed/rpc/internal.py", line 204, in _run_function
-    result = python_udf.func(*python_udf.args, **python_udf.kwargs)
-  File "/fsx/users/wayi/work/pytorch/torch/distributed/rpc/api.py", line 389, in _rref_typeof_on_owner
-    rref_type = type(rref.local_value())
-RuntimeError: Cannot extract tensors from value: TypeError: cannot pickle '_thread.lock' object
-
-At:
-  /fsx/users/wayi/work/pytorch/torch/_jit_internal.py(1170): _extract_tensors
-
-

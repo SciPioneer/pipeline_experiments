@@ -21,7 +21,7 @@ sbatch <<EOT
 #SBATCH --error=logs/logs.%x.%t.err
 #SBATCH --gres gpu:4
 #SBATCH --nodes $nodes
-#SBATCH --partition=q3
+#SBATCH --partition=dev
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task 32
 #SBATCH --time=1:00:00
