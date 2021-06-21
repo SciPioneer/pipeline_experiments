@@ -1,6 +1,7 @@
 .data/
 __pycache__/
 *.out
+*.err
 logs/
 fairscale
 torchtext_bert_vocab.pt
